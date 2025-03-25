@@ -1,8 +1,52 @@
-# Weekly Individual Assignment 06
+# Weekly Individual Assignment 07
 
 Vinka Alrezky As - 2206820200
 
-A simple Django web app that validates form inputs and instantly shows errors and feedback.
+A simple Django web application implementing authentication, authorization, and CSRF protection. Also validates form inputs and instantly shows errors and feedback.
+
+<details>
+<summary>Click to expand</summary>
+
+### Test Credentials
+
+#### Admin Account
+- Username: vinkakniv
+- Password: V!nk@A1rezky_2025#Dj4ng0
+
+#### Regular User Account
+- Username: jasmine.mooney
+- Password: J@sm1n3!M00n3y#2025$
+
+## Features
+
+### Django Admin Implementation
+- Configured Django Admin for user and data management.
+- Admin access restricted to authorized users.
+
+### Authentication and Authorization
+- Login page with username and password authentication.
+- Logout functionality.
+- Two user roles:
+  - **Regular User** (cannot access Django Admin)
+  - **Admin User** (can access Django Admin)
+- Uses Django's built-in authentication system.
+
+### Database Implementation (SQLite Recommended)
+- Stores user authentication and authorization data.
+- Implements database migrations to ensure consistency.
+
+### CSRF Protection
+- CSRF token added to all user-submitted forms.
+- Protects against Cross-Site Request Forgery attacks.
+
+</details>
+
+---
+
+## Weekly Individual Assignment 06
+
+<details>
+<summary>Click to expand</summary>
 
 ## Features
 
@@ -70,8 +114,6 @@ python manage.py runserver
 
 6. Access the application at `http://localhost:8000`
 
-
-
 ## Form Validation Rules
 
 ### Phone Number
@@ -95,6 +137,4 @@ python manage.py runserver
 - Numbers only
 - Example: 1234567890123456
 
-
-
-
+</details>
