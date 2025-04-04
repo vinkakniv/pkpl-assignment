@@ -1,25 +1,16 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Halaman Utama</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .text-lilac {
-            color: #C8A2C8; 
-            font-weight: 500;
-            text-decoration: none;
-            transition: color 0.3s ease-in-out;
-        }
-    </style>
-</head>
-<body class="d-flex align-items-center justify-content-center vh-100">
+{% extends 'base.html' %}
+
+{% block title %}Halaman Utama{% endblock %}
+
+{% block content %}
+{% include 'navbar.html' %}
+
+<div class="container d-flex align-items-center justify-content-center vh-100">
     <div class="text-center">
         {% if user.is_authenticated %}
             <h1 class="text-lilac fw-bold">Welcome, {{ user.username }}. </h1>
             <p class="mt-2 d-inline">
-                Take a deep breath. You’re exactly where you need to be.  
+                Take a deep breath. You're exactly where you need to be.  
                 <form action="{% url 'logout' %}" method="post" class="d-inline">
                     {% csrf_token %}
                     <button type="submit" class="btn btn-link text-danger p-0 m-0 align-baseline">Log out</button>
@@ -31,6 +22,5 @@
             <a href="{% url 'login' %}" class="text-danger">Log in now</a></p>
         {% endif %}
     </div>
-    
-</body>
-</html>
+</div>
+{% endblock %}

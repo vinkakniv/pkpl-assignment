@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block title %}Payment{% endblock %}
+
+{% block content %}
+{% include 'navbar.html' %}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header">
+                    <h4 class="mb-0">Payment Details</h4>
+                </div>
+                <div class="card-body">
+                    {% if ticket %}
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <h5 class="mb-3">Ticket Information</h5>
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <th class="bg-lilac text-white">Ticket Number</th>
+                                        <td>{{ ticket.ticket_number }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="bg-lilac text-white">Route</th>
+                                        <td>{{ ticket.route.origin }} to {{ ticket.route.destination }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="bg-lilac text-white">Departure Date</th>
+                                        <td>{{ ticket.departure_date|date:"d M Y" }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="bg-lilac text-white">Departure Time</th>
+                                        <td>{{ ticket.departure_time }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="bg-lilac text-white">Seat Number</th>
+                                        <td>{{ ticket.seat_number }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="bg-lilac text-white">Price</th>
+                                        <td>Rp {{ ticket.price|floatformat:2 }}</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <h5 class="mb-3">Payment Method</h5>
+                            <form method="post">
+                                {% csrf_token %}
+                                <div class="mb-3">
+                                    <label for="{{ form.payment_method.id_for_label }}" class="form-label">Select Payment Method</label>
+                                    {% render_field form.payment_method class="form-select" %}
+                                    {% if form.payment_method.errors %}
+                                        <div class="invalid-feedback d-block">
+                                            {{ form.payment_method.errors }}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                <div class="d-grid gap-2">
+                                    <button type="submit" class="btn btn-lilac">Proceed to Payment</button>
+                                    <a href="{% url 'book_ticket' %}" class="btn btn-outline-secondary">Back to Booking</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="alert alert-danger">
+                        No ticket information available. Please go back to booking.
+                    </div>
+                    <div class="text-center">
+                        <a href="{% url 'book_ticket' %}" class="btn btn-lilac">Back to Booking</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+.table th {
+    min-width: 150px;
+}
+.table td {
+    padding: 0.75rem;
+}
+</style>
+{% endblock %} 

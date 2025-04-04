@@ -1,0 +1,298 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block title %}Book Ticket{% endblock %}
+
+{% block content %}
+{% include 'navbar.html' %}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header">
+                    <h3 class="text-center mb-0">Secure Your Seat</h3>
+                </div>
+                <div class="card-body p-4">
+                    <form method="post" class="needs-validation" novalidate>
+                        {% csrf_token %}
+                        
+                        <div class="mb-4">
+                            <label for="{{ form.route.id_for_label }}" class="form-label">Route</label>
+                            {% render_field form.route class="form-select" %}
+                            {% if form.route.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.route.errors }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="{{ form.departure_date.id_for_label }}" class="form-label">Departure Date</label>
+                            {% render_field form.departure_date class="form-control" type="date" %}
+                            {% if form.departure_date.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.departure_date.errors }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="{{ form.departure_time.id_for_label }}" class="form-label">Departure Time</label>
+                            {% render_field form.departure_time class="form-select" %}
+                            {% if form.departure_time.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.departure_time.errors }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label">Seat Number</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="seatDisplay" readonly placeholder="Select a seat">
+                                <button type="button" class="btn btn-outline-lilac" data-bs-toggle="modal" data-bs-target="#seatModal">
+                                    Choose Seat
+                                </button>
+                            </div>
+                            <input type="hidden" name="seat_number" id="selectedSeat" required>
+                            <div id="seatError" class="invalid-feedback d-block"></div>
+                        </div>
+
+                        <div class="d-grid gap-3">
+                            <button type="submit" class="btn btn-lilac">Reserve Seat</button>
+                            <a href="{% url 'home' %}" class="btn btn-outline-lilac">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Seat Selection Modal -->
+<div class="modal fade" id="seatModal" tabindex="-1" aria-labelledby="seatModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content">
+            <div class="modal-header py-2">
+                <h5 class="modal-title" id="seatModalLabel">Select Seat</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-2">
+                <div class="seat-grid" id="seatGrid">
+                    <!-- Seats will be populated here -->
+                </div>
+                <div class="legend mt-2">
+                    <div class="legend-item">
+                        <div class="legend-color legend-available"></div>
+                        <span>Available</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color legend-selected"></div>
+                        <span>Selected</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color legend-booked"></div>
+                        <span>Booked</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer py-2">
+                <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% block extra_css %}
+<style>
+.seat-grid {
+    display: grid;
+    grid-template-columns: repeat(10, 20px);
+    gap: 4px;
+    padding: 5px;
+    justify-items: center;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.seat {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #dee2e6;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-size: 0.6rem;
+    font-weight: 500;
+    padding: 0;
+    line-height: 1;
+    text-align: center;
+}
+
+.seat.available {
+    background-color: #fff;
+    border-color: #C8A2C8;
+}
+
+.seat.available:hover {
+    background-color: #C8A2C8;
+    color: white;
+}
+
+.seat.selected {
+    background-color: #C8A2C8;
+    color: white;
+    border-color: #C8A2C8;
+}
+
+.seat.booked {
+    background-color: #e9ecef;
+    color: #6c757d;
+    cursor: not-allowed;
+    border-color: #dee2e6;
+}
+
+.legend {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    font-size: 0.7rem;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.legend-color {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+}
+
+.legend-available {
+    background-color: #fff;
+    border: 1px solid #C8A2C8;
+}
+
+.legend-selected {
+    background-color: #C8A2C8;
+}
+
+.legend-booked {
+    background-color: #e9ecef;
+    border: 1px solid #dee2e6;
+}
+
+.modal-sm {
+    max-width: 300px;
+}
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const routeSelect = document.querySelector('#{{ form.route.id_for_label }}');
+    const dateInput = document.querySelector('#{{ form.departure_date.id_for_label }}');
+    const timeSelect = document.querySelector('#{{ form.departure_time.id_for_label }}');
+    const seatGrid = document.querySelector('#seatGrid');
+    const selectedSeatInput = document.querySelector('#selectedSeat');
+    const seatDisplay = document.querySelector('#seatDisplay');
+    const seatError = document.querySelector('#seatError');
+
+    function updateSeatGrid(availableSeats) {
+        console.log('Updating seat grid with available seats:', availableSeats);
+        let html = '';
+        
+        // Create seat grid
+        for (let i = 1; i <= 40; i++) {
+            const isAvailable = availableSeats.includes(i);
+            const seatClass = isAvailable ? 'available' : 'booked';
+            
+            html += `
+                <div class="seat ${seatClass}" data-seat="${i}">
+                    ${i}
+                </div>
+            `;
+        }
+        
+        seatGrid.innerHTML = html;
+
+        // Add click event to available seats
+        document.querySelectorAll('.seat.available').forEach(seat => {
+            seat.addEventListener('click', function() {
+                // Remove selected class from all seats
+                document.querySelectorAll('.seat').forEach(s => s.classList.remove('selected'));
+                // Add selected class to clicked seat
+                this.classList.add('selected');
+                // Update hidden input and display
+                const seatNumber = this.dataset.seat;
+                selectedSeatInput.value = seatNumber;
+                seatDisplay.value = `Seat ${seatNumber}`;
+                // Clear error
+                seatError.textContent = '';
+            });
+        });
+    }
+
+    // Function to fetch available seats
+    function fetchAvailableSeats() {
+        const routeId = document.getElementById('id_route').value;
+        const date = document.getElementById('id_departure_date').value;
+        const time = document.getElementById('id_departure_time').value;
+        
+        console.log('Fetching seats with:', { routeId, date, time });
+        
+        if (!routeId || !date || !time) {
+            console.log('Missing required fields');
+            seatGrid.innerHTML = '<div class="col-12 text-center small">Please select route, date, and time first</div>';
+            return;
+        }
+        
+        // Format waktu ke format yang konsisten (HH:MM)
+        let formattedTime = time;
+        if (!time.includes(':')) {
+            formattedTime = `${time}:00`;
+        }
+        
+        console.log('Formatted time:', formattedTime);
+        
+        fetch(`/get-available-seats/?route_id=${routeId}&departure_date=${date}&departure_time=${formattedTime}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Received data:', data);
+                if (data.error) {
+                    console.error('Error:', data.error);
+                    seatGrid.innerHTML = `<div class="col-12 text-center text-danger small">${data.error}</div>`;
+                    return;
+                }
+                updateSeatGrid(data.available_seats);
+            })
+            .catch(error => {
+                console.error('Error fetching available seats:', error);
+                seatGrid.innerHTML = '<div class="col-12 text-center text-danger small">Error loading seat availability</div>';
+            });
+    }
+
+    // Add event listeners
+    document.getElementById('id_route').addEventListener('change', fetchAvailableSeats);
+    document.getElementById('id_departure_date').addEventListener('change', fetchAvailableSeats);
+    document.getElementById('id_departure_time').addEventListener('change', fetchAvailableSeats);
+
+    // Initial update
+    fetchAvailableSeats();
+});
+</script>
+{% endblock %}
+{% endblock %} 

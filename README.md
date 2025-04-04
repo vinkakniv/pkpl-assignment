@@ -1,8 +1,78 @@
-# Weekly Individual Assignment 07
+## Weekly Individual Assignment 08
 
 Vinka Alrezky As - 2206820200
 
-A simple Django web application implementing authentication, authorization, and CSRF protection. Also validates form inputs and instantly shows errors and feedback.
+A Django web application implementing a complete transportation ticket booking system with user authentication, ticket management, payment processing, and real-time seat availability checking. The application features a responsive design, secure payment handling, and proper database transaction management.
+
+<details>
+<summary>Click to expand</summary>
+
+### Features Implemented:
+1. **Ticket Management System**
+   - Users can view their booked tickets in a list view
+   - Each ticket shows detailed information including:
+     - Ticket number
+     - Route details (origin, destination)
+     - Departure date and time
+     - Seat number
+     - Price
+     - Payment status
+
+2. **Payment Integration**
+   - Users can proceed to payment for pending tickets
+   - Payment information is stored and linked to tickets
+   - Payment status is updated after successful transaction
+   - Users can view payment details including:
+     - Payment number
+     - Amount
+     - Payment method
+     - Payment date
+     - Payment status
+
+3. **User Experience Improvements**
+   - Responsive navigation bar with user-specific options
+   - Clear status indicators for tickets and payments
+   - Intuitive flow from ticket booking to payment
+   - Proper handling of pending tickets
+   - Consistent styling across all pages
+
+4. **Database Transaction Management**
+   - Implementation of Django's atomic transactions
+   - Ensures data consistency during ticket booking and payment
+   - Proper handling of ticket status updates
+   - Prevention of duplicate bookings
+
+### Technical Implementation:
+- Used Django's `LoginRequiredMixin` for authentication
+- Implemented `ListView` and `DetailView` for ticket management
+- Utilized Django's session management for payment flow
+- Implemented proper error handling and user feedback
+- Used Bootstrap for responsive design and consistent styling
+
+### Security Features:
+- User authentication required for all sensitive operations
+- Proper session management for payment process
+- Prevention of unauthorized access to tickets
+- Secure handling of payment information
+
+### Database Setup and Fixtures:
+1. **Initial Data Setup**
+   - Routes data is loaded from fixtures
+   - Includes predefined routes with:
+     - Origin and destination
+     - Distance
+     - Base price
+     - Available times
+
+2. **Loading Fixtures**
+   ```bash
+   # Load routes data
+   python manage.py loaddata routes.json
+   ```
+
+</details>
+
+## Weekly Individual Assignment 07
 
 <details>
 <summary>Click to expand</summary>
@@ -138,3 +208,4 @@ python manage.py runserver
 - Example: 1234567890123456
 
 </details>
+
