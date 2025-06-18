@@ -168,7 +168,7 @@ source env/bin/activate  # On Windows use: env\Scripts\activate
 
 3. Install dependencies
 ```bash
-pip install requirements.txt
+pip install -r requirements.txt
 ```
 
 4. Apply migrations
