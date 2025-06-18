@@ -1,8 +1,122 @@
-# Weekly Individual Assignment 06
+## Weekly Individual Assignment 08
 
 Vinka Alrezky As - 2206820200
 
-A simple Django web app that validates form inputs and instantly shows errors and feedback.
+A Django web application implementing a complete transportation ticket booking system with user authentication, ticket management, payment processing, and real-time seat availability checking. The application features a responsive design, secure payment handling, and proper database transaction management.
+
+<details>
+<summary>Click to expand</summary>
+
+### Features Implemented:
+1. **Ticket Management System**
+   - Users can view their booked tickets in a list view
+   - Each ticket shows detailed information including:
+     - Ticket number
+     - Route details (origin, destination)
+     - Departure date and time
+     - Seat number
+     - Price
+     - Payment status
+
+2. **Payment Integration**
+   - Users can proceed to payment for pending tickets
+   - Payment information is stored and linked to tickets
+   - Payment status is updated after successful transaction
+   - Users can view payment details including:
+     - Payment number
+     - Amount
+     - Payment method
+     - Payment date
+     - Payment status
+
+3. **User Experience Improvements**
+   - Responsive navigation bar with user-specific options
+   - Clear status indicators for tickets and payments
+   - Intuitive flow from ticket booking to payment
+   - Proper handling of pending tickets
+   - Consistent styling across all pages
+
+4. **Database Transaction Management**
+   - Implementation of Django's atomic transactions
+   - Ensures data consistency during ticket booking and payment
+   - Proper handling of ticket status updates
+   - Prevention of duplicate bookings
+
+### Technical Implementation:
+- Used Django's `LoginRequiredMixin` for authentication
+- Implemented `ListView` and `DetailView` for ticket management
+- Utilized Django's session management for payment flow
+- Implemented proper error handling and user feedback
+- Used Bootstrap for responsive design and consistent styling
+
+### Security Features:
+- User authentication required for all sensitive operations
+- Proper session management for payment process
+- Prevention of unauthorized access to tickets
+- Secure handling of payment information
+
+### Database Setup and Fixtures:
+1. **Initial Data Setup**
+   - Routes data is loaded from fixtures
+   - Includes predefined routes with:
+     - Origin and destination
+     - Distance
+     - Base price
+     - Available times
+
+2. **Loading Fixtures**
+   ```bash
+   # Load routes data
+   python manage.py loaddata routes.json
+   ```
+
+</details>
+
+## Weekly Individual Assignment 07
+
+<details>
+<summary>Click to expand</summary>
+
+### Test Credentials
+
+#### Admin Account
+- Username: vinkakniv
+- Password: V!nk@A1rezky_2025#Dj4ng0
+
+#### Regular User Account
+- Username: jasmine.mooney
+- Password: J@sm1n3!M00n3y#2025$
+
+## Features
+
+### Django Admin Implementation
+- Configured Django Admin for user and data management.
+- Admin access restricted to authorized users.
+
+### Authentication and Authorization
+- Login page with username and password authentication.
+- Logout functionality.
+- Two user roles:
+  - **Regular User** (cannot access Django Admin)
+  - **Admin User** (can access Django Admin)
+- Uses Django's built-in authentication system.
+
+### Database Implementation (SQLite Recommended)
+- Stores user authentication and authorization data.
+- Implements database migrations to ensure consistency.
+
+### CSRF Protection
+- CSRF token added to all user-submitted forms.
+- Protects against Cross-Site Request Forgery attacks.
+
+</details>
+
+---
+
+## Weekly Individual Assignment 06
+
+<details>
+<summary>Click to expand</summary>
 
 ## Features
 
@@ -70,8 +184,6 @@ python manage.py runserver
 
 6. Access the application at `http://localhost:8000`
 
-
-
 ## Form Validation Rules
 
 ### Phone Number
@@ -95,6 +207,5 @@ python manage.py runserver
 - Numbers only
 - Example: 1234567890123456
 
-
-
+</details>
 

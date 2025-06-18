@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Halaman Utama{% endblock %}
+
+{% block content %}
+{% include 'navbar.html' %}
+
+<div class="container d-flex align-items-center justify-content-center vh-100">
+    <div class="text-center">
+        {% if user.is_authenticated %}
+            <h1 class="text-lilac fw-bold">Welcome, {{ user.username }}. </h1>
+            <p class="mt-2 d-inline">
+                Take a deep breath. You're exactly where you need to be.  
+                <form action="{% url 'logout' %}" method="post" class="d-inline">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-link text-danger p-0 m-0 align-baseline">Log out</button>
+                </form>
+            </p>                      
+        {% else %}
+            <h1 class="text-lilac fw-bold">Welcome. </h1>
+            <p class="mt-2">Take a deep breath. A new journey begins.  
+            <a href="{% url 'login' %}" class="text-danger">Log in now</a></p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

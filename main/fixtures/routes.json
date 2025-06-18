@@ -1,0 +1,142 @@
+[
+  {
+    "model": "main.route",
+    "pk": 1,
+    "fields": {
+      "code": "JKT-SUB",
+      "origin": "Jakarta",
+      "destination": "Surabaya",
+      "distance": "660.50",
+      "base_price": "350000.00",
+      "is_active": true,
+      "created_at": "2024-04-04T12:00:00Z",
+      "updated_at": "2024-04-04T12:00:00Z"
+    }
+  },
+  {
+    "model": "main.route",
+    "pk": 2,
+    "fields": {
+      "code": "JKT-DPS",
+      "origin": "Jakarta",
+      "destination": "Denpasar",
+      "distance": "980.30",
+      "base_price": "450000.00",
+      "is_active": true,
+      "created_at": "2024-04-04T12:00:00Z",
+      "updated_at": "2024-04-04T12:00:00Z"
+    }
+  },
+  {
+    "model": "main.route",
+    "pk": 3,
+    "fields": {
+      "code": "SUB-MKS",
+      "origin": "Surabaya",
+      "destination": "Makassar",
+      "distance": "850.20",
+      "base_price": "500000.00",
+      "is_active": true,
+      "created_at": "2024-04-04T12:00:00Z",
+      "updated_at": "2024-04-04T12:00:00Z"
+    }
+  },
+  {
+    "model": "main.route",
+    "pk": 4,
+    "fields": {
+      "code": "JKT-SIN",
+      "origin": "Jakarta",
+      "destination": "Singapore",
+      "distance": "880.40",
+      "base_price": "550000.00",
+      "is_active": true,
+      "created_at": "2024-04-04T12:00:00Z",
+      "updated_at": "2024-04-04T12:00:00Z"
+    }
+  },
+  {
+    "model": "main.route",
+    "pk": 5,
+    "fields": {
+      "code": "SIN-TYO",
+      "origin": "Singapore",
+      "destination": "Tokyo",
+      "distance": "5300.20",
+      "base_price": "3500000.00",
+      "is_active": true,
+      "created_at": "2024-04-04T12:00:00Z",
+      "updated_at": "2024-04-04T12:00:00Z"
+    }
+  },
+  {
+    "model": "main.route",
+    "pk": 6,
+    "fields": {
+      "code": "DPS-MDO",
+      "origin": "Denpasar",
+      "destination": "Manado",
+      "distance": "1360.80",
+      "base_price": "750000.00",
+      "is_active": true,
+      "created_at": "2024-04-04T12:00:00Z",
+      "updated_at": "2024-04-04T12:00:00Z"
+    }
+  },
+  {
+    "model": "main.route",
+    "pk": 7,
+    "fields": {
+      "code": "JKT-KUL",
+      "origin": "Jakarta",
+      "destination": "Kuala Lumpur",
+      "distance": "1120.60",
+      "base_price": "600000.00",
+      "is_active": true,
+      "created_at": "2024-04-04T12:00:00Z",
+      "updated_at": "2024-04-04T12:00:00Z"
+    }
+  },
+  {
+    "model": "main.route",
+    "pk": 8,
+    "fields": {
+      "code": "JKT-HKG",
+      "origin": "Jakarta",
+      "destination": "Hong Kong",
+      "distance": "3250.70",
+      "base_price": "2000000.00",
+      "is_active": true,
+      "created_at": "2024-04-04T12:00:00Z",
+      "updated_at": "2024-04-04T12:00:00Z"
+    }
+  },
+  {
+    "model": "main.route",
+    "pk": 9,
+    "fields": {
+      "code": "LAX-JFK",
+      "origin": "Los Angeles",
+      "destination": "New York",
+      "distance": "3950.30",
+      "base_price": "4000000.00",
+      "is_active": true,
+      "created_at": "2024-04-04T12:00:00Z",
+      "updated_at": "2024-04-04T12:00:00Z"
+    }
+  },
+  {
+    "model": "main.route",
+    "pk": 10,
+    "fields": {
+      "code": "LHR-CDG",
+      "origin": "London",
+      "destination": "Paris",
+      "distance": "343.50",
+      "base_price": "1200000.00",
+      "is_active": true,
+      "created_at": "2024-04-04T12:00:00Z",
+      "updated_at": "2024-04-04T12:00:00Z"
+    }
+  }
+]
